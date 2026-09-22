@@ -1,0 +1,15 @@
+{
+  "name": "jobkorea-cli",
+  "version": "1.0.0",
+  "description": "CLI for browsing job postings on JobKorea (jobkorea.co.kr) by category, region and career range, and reading one posting in full. No authentication, zero runtime dependencies. Personal use only.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": { "jobkorea-search": "src/cli.ts" },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": { "typescript": "^5.4.0", "@types/bun": "1.3.14" }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "saramin-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching job postings on Saramin (saramin.co.kr), Korea's largest general job portal, and reading one posting in full. No authentication, zero runtime dependencies. Personal use only.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": { "saramin-search": "src/cli.ts" },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": { "typescript": "^5.4.0", "@types/bun": "1.3.14" }
+}

@@ -1,0 +1,60 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Bun / Node
+node_modules/
+bun.lock
+
+# 빌드 중간물
+*.html
+*.pdf
+
+# 비밀값. 원티드 북마크 수집에 쓰는 쿠키 등
+.env
+.env.*
+
+# ---- 개인 데이터. 아래는 절대 커밋하지 않는다 ----
+# 원본 경력 자료 (/setup 입력)
+documents/**
+!documents/README.md
+!documents/**/.gitkeep
+
+# 생성된 지원 문서 (/apply 출력)
+applications/**
+!applications/README.md
+!applications/.gitkeep
+
+# 면접 준비 자료 (/interview 출력)
+interview/**
+!interview/README.md
+!interview/.gitkeep
+
+# 공고 수집·스코어링 결과 (/scrape, /rank 출력)
+job_scraper/**
+!job_scraper/README.md
+!job_scraper/.gitkeep
+
+# 지원 이력 추적표 (/outcome)
+tracker.csv
+.tracker.lock
+.tracker-*
+
+# 작업 중 메모
+scratchpad/
+
+# 휴머나이저 작업 폴더 (윤문 과정 파일. final.md 만 문서에 반영한다)
+_workspace/
+
+# 프로필·검색 설정 실제 파일. /setup 이 채우므로 개인 데이터다. placeholder 원본은 *.template.md 로 추적한다
+.agents/skills/job-application-assistant/01-candidate-profile.md
+.agents/skills/job-application-assistant/03-glossary.md
+.agents/skills/job-application-assistant/05-profiles.md
+.agents/skills/job-scraper/search-config.md

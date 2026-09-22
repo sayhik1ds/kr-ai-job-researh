@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(job-application-assistant)",
+      "Skill(job-scraper)",
+      "Skill(setup)",
+      "Skill(scrape)",
+      "Skill(rank)",
+      "Skill(apply)",
+      "Skill(outcome)",
+      "Skill(interview)",
+      "Skill(humanize-korean)",
+      "Bash(bun run .agents/skills/wanted-search/cli/src/cli.ts:*)",
+      "Bash(bun run .agents/skills/jumpit-search/cli/src/cli.ts:*)",
+      "Bash(bun run .agents/skills/groupby-search/cli/src/cli.ts:*)",
+      "Bash(bun run .agents/skills/jobkorea-search/cli/src/cli.ts:*)",
+      "Bash(bun run .agents/skills/saramin-search/cli/src/cli.ts:*)",
+      "Bash(python3 tools/score_jobs.py:*)",
+      "Bash(python3 tools/humanize_split.py:*)",
+      "Bash(python3 tools/lint_style.py:*)",
+      "Bash(python3 tools/check_facts.py:*)",
+      "Bash(python3 tools/verify_pdf.py:*)",
+      "Bash(python3 tools/wanted_bookmarks.py:*)",
+      "Bash(bash tools/build_pdf.sh:*)",
+      "Bash(bash tools/update_humanizer.sh:*)"
+    ]
+  }
+}

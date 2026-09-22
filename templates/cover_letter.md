@@ -1,0 +1,15 @@
+# 자기소개서 — [COMPANY] [POSITION]
+
+[YOUR_NAME] · [YOUR_EMAIL]
+
+## 1. [QUESTION_1]
+
+[ANSWER_1]
+
+## 2. [QUESTION_2]
+
+[ANSWER_2]
+
+## 3. [QUESTION_3]
+
+[ANSWER_3]

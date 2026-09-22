@@ -1,0 +1,39 @@
+@page { size: A4; margin: 16mm 14mm 18mm 14mm; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  font-family: "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", -apple-system, sans-serif;
+  font-size: 10pt; line-height: 1.62; color: #1a1d21; margin: 0;
+  word-break: keep-all; overflow-wrap: anywhere;
+}
+h1 { font-size: 21pt; font-weight: 700; letter-spacing: -.02em;
+     margin: 0 0 6pt; padding-bottom: 8pt; border-bottom: 2.5px solid #1a1d21; }
+h2 { font-size: 14pt; font-weight: 700; letter-spacing: -.01em;
+     margin: 20pt 0 9pt; padding: 6pt 0 5pt 9pt;
+     border-left: 4px solid #2563eb; background: #f4f7fd;
+     break-after: avoid; break-inside: avoid; break-before: page; }
+h1 + p + table, h1 ~ h2:first-of-type { break-before: auto; }
+h3 { font-size: 11.5pt; font-weight: 700; color: #1e40af; margin: 13pt 0 5pt; break-after: avoid; }
+h4 { font-size: 10.2pt; font-weight: 700; color: #374151; margin: 10pt 0 4pt; break-after: avoid; }
+p { margin: 5pt 0; }
+blockquote { margin: 7pt 0; padding: 7pt 11pt; background: #f8fafc;
+             border-left: 3px solid #94a3b8; color: #334155; font-size: 9.6pt; }
+blockquote p { margin: 0; }
+ul, ol { margin: 5pt 0; padding-left: 17pt; }
+li { margin: 2.5pt 0; break-inside: avoid; }
+li > ul, li > ol { margin: 2.5pt 0; }
+strong { font-weight: 700; color: #0f172a; }
+em { font-style: normal; color: #475569; background: #f1f5f9; padding: 0 2px; }
+code { font-family: "SF Mono", "JetBrains Mono", Menlo, monospace; font-size: 8.6pt;
+       background: #eef2f7; color: #b91c1c; padding: 1px 4px; border-radius: 3px; white-space: nowrap; }
+hr { border: 0; border-top: 1px solid #e2e8f0; margin: 12pt 0; }
+table { width: 100%; border-collapse: collapse; margin: 7pt 0; font-size: 8.9pt;
+        break-inside: avoid; table-layout: auto; }
+th { background: #eef2f7; font-weight: 700; text-align: left; padding: 5pt 7pt;
+     border: 1px solid #cbd5e1; color: #0f172a; }
+td { padding: 5pt 7pt; border: 1px solid #dde3ea; vertical-align: top; }
+tbody tr:nth-child(even) { background: #fafbfc; }
+td strong:first-child { color: #1e40af; }
+a { color: #1d4ed8; text-decoration: none; }
+table:first-of-type th:first-child,
+table:first-of-type td:first-child { width: 34px; text-align: center; color:#64748b; }
+header#title-block-header { display: none; }
