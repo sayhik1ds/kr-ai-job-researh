@@ -269,6 +269,8 @@ documents/ 읽어      원티드·점핏·그룹바이     공고 평가 (연차
 
 Codex에는 인자 치환 기능이 없어 스킬 본문에 "스킬 이름 뒤에 적은 문자열"을 인자로 읽도록 안내했다.
 
+2026년 9월 23일 Codex CLI 0.155.1에서 `/skills`로 스킬 14개가 모두 표시되는 것을 확인했다. `python3 tools/check_codex_skills.py`가 같은 조건을 정적으로 검사하므로 스킬을 고친 뒤에는 이 명령으로 확인하면 된다.
+
 ## 파일 구조
 
 ```
@@ -301,6 +303,7 @@ kr-ai-job-researh/
 │   └── settings.json
 ├── templates/                     # 이력서·포트폴리오·자기소개서 마크다운 골격 + CSS
 ├── tools/
+│   ├── check_codex_skills.py      # 코덱스가 스킬 14개를 읽을 수 있는지 검사
 │   ├── humanize_split.py          # 산문만 뽑아 휴머나이저에 넘기고 제자리로 복원
 │   ├── merge_jobs.py              # 포털 5종 출력을 한 스키마로 합치고 중복 제거
 │   ├── score_jobs.py              # 키워드 가중치 채점
@@ -327,6 +330,7 @@ kr-ai-job-researh/
 
 ```bash
 .venv/bin/python -m pytest -q
+python3 tools/check_codex_skills.py   # 코덱스 스킬 탐색 조건
 for s in wanted-search jumpit-search groupby-search saramin-search jobkorea-search; do (cd .agents/skills/$s/cli && bun run typecheck); done
 ```
 

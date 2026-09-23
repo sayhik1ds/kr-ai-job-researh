@@ -17,6 +17,7 @@
       "Bash(bun run .agents/skills/saramin-search/cli/src/cli.ts:*)",
       "Bash(python3 tools/score_jobs.py:*)",
       "Bash(python3 tools/humanize_split.py:*)",
+      "Bash(python3 tools/check_codex_skills.py:*)",
       "Bash(python3 tools/lint_style.py:*)",
       "Bash(python3 tools/check_facts.py:*)",
       "Bash(python3 tools/verify_pdf.py:*)",

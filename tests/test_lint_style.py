@@ -9,7 +9,7 @@ def run(tmp_path, text, gloss=None):
     f = tmp_path / "doc.md"
     f.write_text(textwrap.dedent(text), encoding="utf-8")
     terms = L.load_lint_terms(os.path.join(SKILL, "02-writing-style.md"))
-    g = gloss if gloss is not None else L.load_glossary_terms(os.path.join(SKILL, "03-glossary.md"))
+    g = gloss if gloss is not None else []
     return L.lint_file(str(f), terms, g)
 
 
@@ -74,8 +74,10 @@ def test_glossary_terms(tmp_path):
     assert ("사내 용어", "지휘") in kinds(hits)
 
 
-def test_glossary_loader_skips_placeholders():
-    g = L.load_glossary_terms(os.path.join(SKILL, "03-glossary.md"))
+def test_glossary_loader_skips_placeholders(tmp_path):
+    glossary = tmp_path / "glossary.md"
+    glossary.write_text("| 사내 용어 | 대체 |\n|---|---|\n| [INTERNAL_TERM_1] | [EXTERNAL_TERM_1] |\n| 지휘 | 제어 |\n", encoding="utf-8")
+    g = L.load_glossary_terms(str(glossary))
     assert not any(t.startswith("[") for t in g)
     assert "지휘" in g
 
@@ -111,5 +113,5 @@ def test_bare_metaphor_still_caught(tmp_path):
 def test_rule_files_skipped(tmp_path):
     f = tmp_path / "03-glossary.md"
     f.write_text("| 지휘 | 제어 |\n", encoding="utf-8")
-    assert L.main([str(f)]) == 0
-    assert L.main([str(f), "--force"]) == 1
+    assert L.main([str(f), "--glossary", str(f)]) == 0
+    assert L.main([str(f), "--glossary", str(f), "--force"]) == 1
