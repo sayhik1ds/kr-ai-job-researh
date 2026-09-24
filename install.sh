@@ -74,6 +74,24 @@ for t in .agents/skills/job-application-assistant/01-candidate-profile .agents/s
   else cp "$t.template.md" "$t.md" && ok "$(basename $t).md 템플릿에서 생성"; fi
 done
 
+echo "== 4.7 스킬 링크"
+# ZIP 으로 내려받으면 심볼릭 링크가 대상 경로를 담은 텍스트 파일이 된다. 다시 링크로 만든다.
+BROKEN=0; FIXED=0; GOOD=0
+if [ -d .claude/skills ]; then
+  for e in .claude/skills/*; do
+    n="$(basename "$e")"; t="$ROOT/.agents/skills/$n"
+    if [ -e "$e/SKILL.md" ]; then GOOD=$((GOOD+1)); continue; fi
+    BROKEN=$((BROKEN+1))
+    [ "$CHECK_ONLY" = 1 ] && continue
+    if [ ! -d "$t" ]; then miss "$n: 원본 $t 이 없다"; continue; fi
+    rm -rf "$e"; ln -s "../../.agents/skills/$n" "$e"
+    [ -e "$e/SKILL.md" ] && FIXED=$((FIXED+1)) || miss "$n: 링크 복구 실패"
+  done
+fi
+if [ "$BROKEN" = 0 ]; then ok "스킬 링크 $GOOD 개 정상"
+elif [ "$CHECK_ONLY" = 1 ]; then miss "스킬 링크 $BROKEN 개가 깨졌다 (bash install.sh 실행으로 복구)"
+elif [ "$FIXED" = "$BROKEN" ]; then ok "스킬 링크 $FIXED 개 복구, $GOOD 개 정상"; fi
+
 echo "== 5. 에이전트"
 have claude && ok "Claude Code ($(claude --version 2>/dev/null | head -1))" || miss "Claude Code. https://claude.com/claude-code (둘 중 하나면 된다)"
 have codex && ok "Codex CLI ($(codex --version 2>/dev/null | head -1))" || miss "Codex CLI. https://developers.openai.com/codex (둘 중 하나면 된다)"
@@ -81,6 +99,9 @@ have codex && ok "Codex CLI ($(codex --version 2>/dev/null | head -1))" || miss 
 echo "== 6. 동작 확인"
 if have bun && [ -d .agents/skills/wanted-search/cli/node_modules ]; then
   if bun run .agents/skills/wanted-search/cli/src/cli.ts search -q "백엔드 개발자" --limit 1 --format json >/dev/null 2>&1; then ok "원티드 검색 응답"; else miss "원티드 검색 실패. 네트워크를 확인한다"; fi
+fi
+if [ -n "$PY" ]; then
+  if "$PY" tools/check_codex_skills.py >/dev/null 2>&1; then ok "스킬 14개 인식"; else miss "스킬 검사 실패. python3 tools/check_codex_skills.py 를 직접 돌려 본다"; fi
 fi
 
 echo

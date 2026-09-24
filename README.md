@@ -29,10 +29,16 @@
    git이 없으면 [공식 사이트](https://git-scm.com)에서 설치한다. [저장소 페이지](https://github.com/sayhik1ds/kr-ai-job-researh)의 "Code → Download ZIP"으로 내려받은 뒤 압축을 풀고 그 폴더로 이동해도 된다.
 
 2. **필요한 프로그램 설치하기** 아래 스크립트가 설치 여부를 확인하고 빠진 프로그램을 설치한다.
+
+   맥과 리눅스는 터미널에서
    ```bash
    bash install.sh
    ```
-   마지막에 `정상 N, 없음 0`이 나오면 준비가 끝난다. `[없음]`이 남아 있으면 함께 표시된 안내에 따라 설치한 뒤 다시 실행한다. 설치 상태만 확인하려면 `bash install.sh --check`를 실행한다.
+   윈도우는 PowerShell에서
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File install.ps1
+   ```
+   마지막에 `정상 N, 없음 0`이 나오면 준비가 끝난다. `[없음]`이 남아 있으면 함께 표시된 안내에 따라 설치한 뒤 다시 실행한다. 설치 상태만 확인하려면 뒤에 `--check`를 붙인다. 윈도우는 `-Check`다.
 
 3. **AI 도구 선택하기** [Claude Code](https://claude.com/claude-code)와 [Codex CLI](https://developers.openai.com/codex) 중 하나를 설치한다. 저장소 폴더에서 `claude` 또는 `codex`를 입력하면 대화창이 열린다.
 
@@ -265,7 +271,7 @@ documents/ 읽어      원티드·점핏·그룹바이     공고 평가 (연차
 
 ### Claude Code와 Codex의 스킬 공유 방식
 
-스킬 원본은 `.agents/skills/`에 모여 있다. Codex는 이 디렉토리를 직접 읽으며 `$이름`으로 스킬을 실행한다. Claude Code가 읽는 `.claude/skills/<이름>`은 `.agents/skills/<이름>`을 가리키는 심볼릭 링크다. Windows에서 클론하면 `git config core.symlinks true`가 필요하다.
+스킬 원본은 `.agents/skills/`에 모여 있다. Codex는 이 디렉토리를 직접 읽으며 `$이름`으로 스킬을 실행한다. Claude Code가 읽는 `.claude/skills/<이름>`은 `.agents/skills/<이름>`을 가리키는 심볼릭 링크다. Windows에서 클론하면 `git config core.symlinks true`가 필요하다. 설정 없이 받았거나 ZIP으로 내려받아 링크가 깨졌다면 설치 스크립트가 다시 만든다. 윈도우에서는 관리자 권한이 필요 없는 디렉토리 정션을 쓴다.
 
 Codex에는 인자 치환 기능이 없어 스킬 본문에 "스킬 이름 뒤에 적은 문자열"을 인자로 읽도록 안내했다.
 
@@ -275,7 +281,8 @@ Codex에는 인자 치환 기능이 없어 스킬 본문에 "스킬 이름 뒤�
 
 ```
 kr-ai-job-researh/
-├── install.sh                     # 의존성 확인·설치. --check 는 상태만
+├── install.sh                     # 의존성 확인·설치 (맥·리눅스). --check 는 상태만
+├── install.ps1                    # 같은 일을 하는 윈도우용. 깨진 스킬 링크를 정션으로 복구
 ├── CLAUDE.md                      # 클로드 코드용 규칙 요약
 ├── AGENTS.md                      # 코덱스 등 다른 에이전트용 규칙 요약
 ├── .agents/skills/                # 스킬 원천. 클로드 코드·코덱스가 같은 파일을 읽는다
@@ -316,7 +323,8 @@ kr-ai-job-researh/
 │   ├── check_submission.py        # 필수 문구·미완성 표기·문항 분량 검사
 │   ├── track_application.py       # 지원 회차·상태 이력·제출본 보관
 │   ├── verify_pdf.py              # PDF 쪽수·텍스트 검사
-│   ├── build_pdf.sh               # pandoc + Chrome
+│   ├── build_pdf.py               # pandoc + Chrome. 맥·리눅스·윈도우 공용
+│   ├── build_pdf.sh               # build_pdf.py 로 넘기는 래퍼
 │   └── update_humanizer.sh        # 휴머나이저 스킬을 업스트림에서 다시 복사
 ├── tests/
 ├── documents/                     # 원본 자료 (gitignore)

@@ -64,8 +64,10 @@ framework_version: 0.1.0
 ## PDF 빌드
 
 ```bash
-bash tools/build_pdf.sh <md> <out.pdf> resume   # 이력서
-bash tools/build_pdf.sh <md> <out.pdf> doc      # 포트폴리오·자기소개서
+python3 tools/build_pdf.py <md> <out.pdf> resume   # 이력서
+python3 tools/build_pdf.py <md> <out.pdf> doc      # 포트폴리오·자기소개서
 ```
+
+윈도우는 `python`으로 부른다. `bash tools/build_pdf.sh` 도 같은 구현으로 넘어간다.
 
 pandoc 옵션 `--metadata title=""`가 없으면 제목 블록이 H1과 중복된다. `hard_line_breaks`가 없으면 `**기간**` / `**역할**` 줄이 합쳐진다. 스크립트가 둘 다 넣는다.
